@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: flask-s3-ingress
+  annotations:
+    # Chỉ định loại Ingress là Application Load Balancer
+    kubernetes.io/ingress.class: alb
+    # Chỉ định Load Balancer sẽ là internet-facing (công khai)
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    # Chỉ định các target group sẽ trỏ đến đâu
+    alb.ingress.kubernetes.io/target-type: ip
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: flask-s3-service
+            port:
+              number: 5000

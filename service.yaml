@@ -5,11 +5,9 @@ metadata:
 spec:
   selector:
     app: flask-s3
-  # Đổi từ NodePort thành LoadBalancer
-  type: LoadBalancer
+  # Đổi thành ClusterIP
+  type: ClusterIP
   ports:
   - protocol: TCP
-    # Cổng của Load Balancer sẽ là 80 (HTTP)
-    port: 80
-    # Chuyển traffic đến cổng 5000 của ứng dụng
+    port: 5000
     targetPort: 5000
