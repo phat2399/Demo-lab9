@@ -46,7 +46,7 @@ HTML_TEMPLATE = """
         </form>
         {% if file_url %}
             <div class="result">
-                <p>✅ Upload thành công!</p>
+                <p>✅ Upload thành công nheeee!!!</p>
                 <a href="{{ file_url }}" target="_blank">Xem file đã upload</a>
             </div>
         {% endif %}
