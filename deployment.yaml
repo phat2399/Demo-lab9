@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-s3-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flask-s3
+  template:
+    metadata:
+      labels:
+        app: flask-s3
+    spec:
+      # THÊM PHẦN NÀY VÀO
+      imagePullSecrets:
+      - name: ecr-registry-secret # Tên của secret đã tạo ở bước 1
+      containers:
+      - name: flask-container
+        # Đảm bảo dòng này trỏ đến kho ECR của bạn
+        image: 927875589544.dkr.ecr.ap-southeast-1.amazonaws.com/demolab8:latest
+        ports:
+        - containerPort: 5000
+        envFrom:
+        - secretRef:
+            name: aws-s3-credentials
