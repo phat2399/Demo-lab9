@@ -1,6 +1,7 @@
 pipeline {
     agent any
     environment {
+        // !!! THAY THẾ CÁC GIÁ TRỊ NÀY BẰNG THÔNG TIN CỦA BẠN !!!
         AWS_ACCOUNT_ID      = "927875589544"
         AWS_DEFAULT_REGION  = "ap-southeast-1"
         ECR_REPOSITORY_NAME = "demolab8" // Hoặc tên repo ECR của bạn
@@ -41,6 +42,8 @@ pipeline {
                         // Áp dụng các file cấu hình Kubernetes
                         sh "kubectl apply -f deployment.yaml"
                         sh "kubectl apply -f service.yaml"
+                        // THÊM LỆNH NÀY ĐỂ TRIỂN KHAI INGRESS
+                        sh "kubectl apply -f ingress.yaml"
                     }
                 }
             }
